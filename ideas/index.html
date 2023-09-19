@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>				
+		<meta charset="utf-8" />		
+		<title>Lluvia de Ideas</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="style/index.css">
+		<link rel="shortcut icon" href="../images/icono.png">
+		
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+		<link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/responsive.css" rel="stylesheet" />
+	</head>
+  	<body>  		  		
+		<header class="header_section">
+			<div class="container-fluid">
+			  <nav class="navbar navbar-expand-lg custom_nav-container ">
+				<a class="navbar-brand" href="index.html">
+				  <img src="images/logo.png" alt="">
+				  <span>
+					T.A.E.
+				  </span>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+	  
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				  <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+					<ul class="navbar-nav  ">
+					  <li class="nav-item">
+						<a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="../games.html">Juegos </a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="../gallery.html">Galería </a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="../chat.html"> ChatBot</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="../calendar.html"> Calendario</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="../ideas/index.html"> Ideas</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="../contact.html">Contacta Ayuda</a>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+			  </nav>
+			</div>
+		  </header>
+  		<div id="kanban">  			  					  	
+  			<div class="column">
+  				<div class="header">
+  					<h2>Nuevas Ideas</h2>
+  					<button id="btnAddTask" type="button" class="btn btn-default" aria-label="Add">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</button>
+				</div>  			
+				<div id="todo" kanban-column-id="todo" class="tasksarea red"></div>	
+  			</div>
+  			<div class="column">
+  				<div class="header">
+  					<h2>Estudiantes</h2>				  				
+  				</div>
+  				<div kanban-column-id="wip" class="tasksarea yellow"></div>
+  			</div>
+  			<div class="column">
+  				<div class="header">
+  					<h2>Padres</h2>
+  				</div>
+  				<div kanban-column-id="done" class="tasksarea green"></div>
+  			</div>
+  		</div>  		
+		<div id="modalContainer"> 
+	  		<div id="modalBackground"></div>
+			<div id="modalTask" class="modal">
+				<div style="padding: 24px; background: white">
+					<h2>Añadir Idea</h2>					
+					<label id="labelTaskTitle">Titulo:</label>
+		        	<input type="text" name="title" id="inputTaskTitle" style="width: 100%"/><br/>
+		        	<br/>
+		        	<label>Descripcion:</label>
+		        	<textarea name="description" id="inputTaskDescription" style="width: 100%; height: 60px"></textarea>
+		        	<br/>
+		        	<div style="text-align: right; margin-top: 12px">		        	
+			        	<button id="btnTaskCancel" type="button" class="btn btn-default" aria-label="Cancel">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar
+						</button>
+			        	<button id="btnTaskOk" type="button" class="btn btn-default" aria-label="Ok">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ok
+						</button>					
+					</div>
+				</div>
+			</div>		
+			<div id="modalPreview" class="modal">
+				<div style="padding: 24px; background: white">
+					<h2 id="taskPreviewTitle">Añadir Idea</h2>										
+		        	<br/>
+		        	<p id="taskPreviewDescription"></p>		        	
+		        	<div style="text-align: right; margin-top: 12px">		        				        	
+			        	<button id="btnTaskPreviewOk" type="button" class="btn btn-default" aria-label="Ok">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ok
+						</button>					
+					</div>
+				</div>
+			</div>
+			<div id="modalExport" class="modal">
+				<div style="padding: 24px; background: white">
+					<h2>Export Board Tasks</h2>										
+		        	<label>Tasks JSON:</label>
+		        	<textarea name="exportJson" id="inputExportJson" style="width: 100%; height: 120px" readonly="true"></textarea>
+		        	<br/>
+		        	<div style="text-align: center; margin-top: 12px">		        	
+			        	<button id="btnExportClose" type="button" class="btn btn-default" aria-label="Cancel">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close
+						</button>			        			
+					</div>
+				</div>
+			</div>
+			<div id="modalImport" class="modal">
+				<div style="padding: 24px; background: white">
+					<h2>Import Tasks as New Board</h2>										
+					<label id="labelBoardName">New board name:</label>
+					<input type="text" name="boardName" id="inputImportBoardName" style="width: 100%"/>
+		        	<br/>
+		        	<br/>
+		        	<label id="labelImportJson">Tasks JSON:</label>
+		        	<textarea name="importJson" id="inputImportJson" style="width: 100%; height: 120px"></textarea>
+		        	<br/>
+		        	<div style="text-align: right; margin-top: 12px">		        	
+			        	<button id="btnImportCancel" type="button" class="btn btn-default" aria-label="Cancel">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+						</button>
+			        	<button id="btnImportOk" type="button" class="btn btn-default" aria-label="Ok">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ok
+						</button>
+					</div>
+				</div>
+			</div>	
+			<div id="modalHistory" class="modal">
+				<div style="padding: 24px; background: white;">
+					<h2>Tasks History</h2>				
+					<div id="historyTableContainer" style="display: block; overflow-y: scroll; width: 100%;">
+						<table id="historyTable">
+							<thead>
+								<tr>
+									<th style="width: 70%">Title</th>
+									<th style="width: 10%">State</th>
+									<th style="width: 10%">Date</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+		        	<div style="text-align: right; margin-top: 12px">		        				        	
+			        	<button id="btnHistoryOk" type="button" class="btn btn-default" aria-label="Ok">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ok
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>		
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/1.7.4/jquery.dotdotdot.min.js"></script>		
+		<script type="text/javascript" src="js/messages.js"></script>
+		<script type="text/javascript" src="js/board.js"></script>
+		<script type="text/javascript" src="js/storage.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
+</html>
